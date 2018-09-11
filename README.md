@@ -3,7 +3,7 @@ A React frontend that consumes the Nasa api, in a mobile first manner. Made as a
 ## Getting Started
 
 — Run command ```npm install``` followed by ```npm start```
-to get the frontend app served locally at [http://localhost:3000](local url)
+to get the frontend app served locally at [http://localhost:3000](http://localhost:3000)
 - The command ```npm test``` will run the yest suites
 
 ### Challenge:
@@ -52,4 +52,6 @@ Create a front end to the NASA Image and Video Library JSON API
 
 
 #### Nasa Api endpoints used:
-- Photo of the day
+- [Nasa Apod](https://api.nasa.gov/api.html#apod)
+- [Mars Rover Photos](https://api.nasa.gov/api.html#MarsPhotos)
+
