@@ -21,10 +21,10 @@ describe('App Container', () => {
   });
   it('Changes state on user actions', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find('.rover-0').length).toEqual(1)
+    expect(wrapper.find('.rover').length).toEqual(3);
 
-    wrapper.find('.rover-0 a').simulate('click');
+    wrapper.find('.rover.curiosity a').simulate('click');
     expect(wrapper.state('explore')).toEqual(false);
-    expect(wrapper.state('mounted')).toEqual({'id':'Rover 0', 'state':'slide-0'});
+    expect(wrapper.state('mounted')).toEqual({'id':'rover-curiosity', 'state':'slide-0'});
   })
 });

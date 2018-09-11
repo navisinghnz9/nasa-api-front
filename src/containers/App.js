@@ -34,15 +34,15 @@ class App extends Component {
         <p className="App-intro">
           {this.state.mounted.id || 'Welcome to Nasa. Choose one'}
         </p>
-        <div className="container--slideshow">
-          <div className="rover-0">
-            <a onClick={()=>this.onClickHandler('Rover 0')}>Rover 0</a>
+        <div className="container--roverSlideshow">
+          <div className="rover curiosity">
+            <a onClick={()=>this.onClickHandler('rover-curiosity')}>Curiosity Rover</a>
           </div>
-          <div className="rover-1">
-            <a onClick={()=>this.onClickHandler('Rover 1')}>Rover 1</a>
+          <div className="rover oportunity">
+            <a onClick={()=>this.onClickHandler('rover-oportunity')}>Oportunity Rover</a>
           </div>
-          <div className="rover-2">
-            <a onClick={()=>this.onClickHandler('Rover 2')}>Rover 2</a>
+          <div className="rover spirit">
+            <a onClick={()=>this.onClickHandler('rover-spirit')}>Spirit Rover</a>
           </div>
         </div>
       </div>
