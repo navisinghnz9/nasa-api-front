@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from '../static/logo.svg';
 import './App.css';
 
+import Explore from './Explore';
+
 class App extends Component {
   constructor(){
     super()
@@ -30,21 +32,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        {this.props.children}
         <p className="App-intro">
           {this.state.mounted.id || 'Welcome to Nasa. Choose one'}
         </p>
-        <div className="container--roverSlideshow">
-          <div className="rover curiosity">
-            <a onClick={()=>this.onClickHandler('rover-curiosity')}>Curiosity Rover</a>
-          </div>
-          <div className="rover oportunity">
-            <a onClick={()=>this.onClickHandler('rover-oportunity')}>Oportunity Rover</a>
-          </div>
-          <div className="rover spirit">
-            <a onClick={()=>this.onClickHandler('rover-spirit')}>Spirit Rover</a>
-          </div>
-        </div>
+        <Explore
+          handler={(target)=>this.onClickHandler(target)}
+          />
+
       </div>
     );
   }
