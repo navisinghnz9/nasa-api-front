@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import { default as NavBar } from '../components/navbar/NavBar'
 import { default as Hero } from '../components/hero/Hero'
 import { default as RoverCards } from '../components/rovercards/RoverCards'
 
@@ -62,9 +60,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <NavBar
-          title="Look into space"
-          />
 
         <Hero
           title={this.state.mounted.id || 'Welcome to Nasa. Choose one'}
