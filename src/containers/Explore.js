@@ -1,13 +1,46 @@
 import React, { Component } from 'react';
+
 import { default as NavBar } from '../components/navbar/NavBar'
+import { default as Hero } from '../components/hero/Hero'
+import { default as RoverCards } from '../components/rovercards/RoverCards'
 
 import './Explore.css';
+
+// api mocks
+const mockArr = (n,s) => {return Array(n).fill(s)}
+const rovers = [
+  {
+    id: 111,
+    name: 'Curiosity Rover',
+    slug: 'curiosity',
+    cameras: ['front','back','center','pano', 'roof'],
+    slides: mockArr(13100, 'C'),
+    sols: 1000
+  },
+  {
+    id: 222,
+    name: 'Oportunity Rover',
+    slug: 'oportunity',
+    cameras: ['front','back','center','pano', 'roof'],
+    slides: mockArr(7250,'O'),
+    sols: 800
+  },
+  {
+    id: 333,
+    name: 'Spirit Rover',
+    slug: 'spirit',
+    cameras: ['front','back','center','pano', 'roof'],
+    slides: mockArr(4401,'S'),
+    sols: 600
+  }
+];
 
 class App extends Component {
   constructor(){
     super()
     this.state = {
       mounted: {
+        mounted: false,
         id: null,
         state: null
       },
@@ -16,35 +49,33 @@ class App extends Component {
   }
 
   onClickHandler(target) {
-    this.setState({
+    this.setState(state => ({
       'explore': false,
       'mounted': {
-        'id': target,
-        'state':'slide-0'
+        ...state.mounted,
+        mounted: true,
+        'id': target
       }
-    })
+    }))
   }
   render() {
+
     return (
       <div className="App">
         <NavBar
           title="Look into space"
           />
-        {this.props.children}
-        <p className="App-intro">
-          {this.state.mounted.id || 'Welcome to Nasa. Choose one'}
-        </p>
-        <div className="container--roverSlideshow">
-          <div className="rover curiosity">
-            <a onClick={()=>this.onClickHandler('rover-curiosity')}>Curiosity Rover</a>
-          </div>
-          <div className="rover oportunity">
-            <a onClick={()=>this.onClickHandler('rover-oportunity')}>Oportunity Rover</a>
-          </div>
-          <div className="rover spirit">
-            <a onClick={()=>this.onClickHandler('rover-spirit')}>Spirit Rover</a>
-          </div>
-        </div>
+
+        <Hero
+          title={this.state.mounted.id || 'Welcome to Nasa. Choose one'}
+          subtitle=""
+          mounted={this.state.mounted.mounted}>
+        </Hero>
+
+        <RoverCards
+          rovers={rovers}
+          handler={(target)=>this.onClickHandler(target)}/>
+
       </div>
     );
   }
