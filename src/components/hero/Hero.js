@@ -1,8 +1,21 @@
 import React from 'react';
 
 export default (props) => {
+
+  let classes = ['hero', 'is-bold'];
+  classes.push(
+    props.full
+    ? 'is-fullheight'
+    : 'is-large'
+  );
+  classes.push(
+    props.light
+    ? 'is-light'
+    : 'is-dark'
+  );
+
   return (
-    <section className="hero is-dark is-bold is-large">
+    <section className={classes.join(' ')}>
       <div className="hero-body" >
         <div className="container">
           <h1 className="title">

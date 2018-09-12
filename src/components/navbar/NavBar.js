@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
+
 import logo from '../../static/logo.svg';
 
 export default (props) => {
@@ -6,10 +8,16 @@ export default (props) => {
     <header className="header">
       <nav className="navbar is-transparent">
         <div className="navbar-brand">
-          <a className="navbar-item">
+          <NavLink to="./" className="navbar-item">
             <img src={logo} className="App-logo" alt="app-logo" width="50" height="50" />
             {props.title}
-          </a>
+          </NavLink>
+          <NavLink to="photo-of-the-day" className="navbar-item">
+            Nasa Photo of the day
+          </NavLink>
+          <NavLink to="about" className="navbar-item">
+            About
+          </NavLink>
           <div className="navbar-burger burger" data-target="navbarExampleTransparentExample">
             <span></span>
             <span></span>
@@ -20,9 +28,9 @@ export default (props) => {
         <div id="navbarExampleTransparentExample" className="navbar-menu">
 
           <div className="navbar-end">
-            <a className="navbar-item">
+            <NavLink to="photo-of-the-day" className="navbar-item">
               Nasa Photo of the day
-            </a>
+            </NavLink>
           </div>
         </div>
       </nav>
