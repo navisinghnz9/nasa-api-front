@@ -15,11 +15,10 @@ import './AppTransitions.css';
 const App = ({ location }) => {
 
   const currentKey = location.pathname.split('/')[1] || '/';
-  const timeout = { enter: 300, exit: 200 }
+  const timeout = { enter: 600, exit: 200 }
 
   return(
-    <Layout>
-      <TransitionGroup component="main">
+      <TransitionGroup component={Layout}>
         <CSSTransition key={currentKey} timeout={timeout} classNames="fade">
           <Switch location={location}>
             <Route exact path='/' component={Explore} />
@@ -28,7 +27,6 @@ const App = ({ location }) => {
           </Switch>
         </CSSTransition>
       </TransitionGroup>
-    </Layout>
   )
 }
 
