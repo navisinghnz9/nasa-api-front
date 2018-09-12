@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import html2canvas from 'html2canvas';
 
 import { default as NavBar } from '../components/navbar/NavBar'
 import { default as Hero } from '../components/hero/Hero'
@@ -52,6 +53,25 @@ class App extends Component {
       explore: true
     }
   }
+
+  componentDidMount() {
+    html2canvas(document.body)
+      .then((canvas) =>{
+        document.body.appendChild(canvas);
+      })
+      .then(() => {
+        this.download('canvas');
+      });
+  }
+
+  download(selector){
+		var download = document.querySelector(selector);
+		var image = document.querySelector("canvas").toDataURL("image/png")
+                    .replace("image/png", "image/octet-stream");
+			  download.setAttribute("href", image);
+			  download.setAttribute("download","archive.png");
+        download.click()
+	}
 
   onClickHandler(target) {
     this.setState(state => ({
