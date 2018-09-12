@@ -5,6 +5,8 @@ import { default as Hero } from '../components/hero/Hero'
 import { default as RoverCards } from '../components/rovercards/RoverCards'
 
 import './Explore.css';
+import Nasa_Rover from '../static/NASA_Mars_Rover.jpg';
+import Nasa_bg from '../static/NASA_background_2.jpg';
 
 // api mocks
 const mockArr = (n,s) => {return Array(n).fill(s)}
@@ -12,6 +14,7 @@ const rovers = [
   {
     id: 111,
     name: 'Curiosity Rover',
+    heroImage: Nasa_Rover,
     slug: 'curiosity',
     cameras: ['front','back','center','pano', 'roof'],
     slides: mockArr(13100, 'C'),
@@ -20,6 +23,7 @@ const rovers = [
   {
     id: 222,
     name: 'Oportunity Rover',
+    heroImage: Nasa_Rover,
     slug: 'oportunity',
     cameras: ['front','back','center','pano', 'roof'],
     slides: mockArr(7250,'O'),
@@ -28,6 +32,7 @@ const rovers = [
   {
     id: 333,
     name: 'Spirit Rover',
+    heroImage: Nasa_Rover,
     slug: 'spirit',
     cameras: ['front','back','center','pano', 'roof'],
     slides: mockArr(4401,'S'),
@@ -67,15 +72,17 @@ class App extends Component {
           />
 
         <Hero
-          title={this.state.mounted.id || 'Welcome to Nasa. Choose one'}
+          title={'Welcome to Nasa. Choose one'}
           subtitle=""
-          mounted={this.state.mounted.mounted}>
+          mounted={this.state.mounted.mounted}
+          bg={Nasa_bg}>
+          {!this.state.mounted.mounted || this.state.mounted.id.name}
         </Hero>
 
         <RoverCards
           rovers={rovers}
-          handler={(target)=>this.onClickHandler(target)}/>
-
+          handler={(target)=>this.onClickHandler(target)}
+          />
       </div>
     );
   }
