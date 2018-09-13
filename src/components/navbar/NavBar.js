@@ -13,7 +13,7 @@ export default (props) => {
             {props.title}
           </NavLink>
           <NavLink to="photo-of-the-day" className="navbar-item">
-            Nasa Photo of the day
+            APOD
           </NavLink>
           <NavLink to="about" className="navbar-item">
             About
