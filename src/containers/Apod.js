@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import { default as Hero } from '../components/hero/Hero'
 import { default as Loading } from '../components/layout/Loading'
 import { default as Slides } from '../components/slideShow/Slides'
+import { default as Zoomed } from '../components/slideShow/Zoomed'
 import { APOD } from '../lib/API'
-
 
 const query = {
   'count': 12,
@@ -21,20 +21,14 @@ class Apod extends Component {
     this.state = {
       fetched: false,
       isLoading: false,
-      photos: [],
+      photoSet: [],
+      zoomed: null
     }
   }
 
   componentDidMount() {
     if (!localStorage.getItem('apod_store')) {
-      console.log('no storage');
-      this.setState({ isLoading: true });
-
-      fetch(endPoint)
-      .then(response => response.json())
-      .then(data => this.setState(
-        { photos: data, isLoading: false, fetched: true}
-      ));
+      this.getImages();
     }
     else {
       const cache = JSON.parse(localStorage.getItem('apod_store'));
@@ -43,7 +37,15 @@ class Apod extends Component {
     }
   }
 
+  componentWillUnmount() {
+    if (this.state.fetched) {
+      localStorage.setItem('apod_store', JSON.stringify(this.state));
+      console.log('Storing in localStorage, key: apod_store');
+    }
+  }
+
   getImages(endpoint) {
+    this.setState({ isLoading: true });
     fetch(endPoint)
     .then(response => response.json())
     .then(data => this.setState({
@@ -51,32 +53,36 @@ class Apod extends Component {
         isLoading: false,
         fetched: true
       })
-    )
+      )
   }
 
-  // store last fetch!
-  componentWillUnmount() {
-      if (this.state.fetched) {
-        localStorage.setItem('apod_store', JSON.stringify(this.state));
-        console.log('Storing in localStorage, key: apod_store');
-      }
-    }
-  // bust cache
   clearCache() {
     if (localStorage.getItem('apod_store') !== undefined) {
-      console.log('busting cache');
       localStorage.removeItem('apod_store');
-      this.componentDidMount();
-    } else {
-      console.log('no cache available to bust');
+      this.getImages(endPoint);
     }
+  }
 
+  zoomImage(image) {
+    if (!image) {
+      this.setState({
+        ...this.state,
+        zommed: null
+      })
+    }
+    this.setState({
+      ...this.state,
+      zoomed: image
+    })
   }
 
   render () {
-    const { photoSet, isLoading, fetched } = this.state
+    const { photoSet, isLoading, fetched, zoomed } = this.state
     if (isLoading) {
-      return <Loading />;
+      return <Loading />
+    };
+    if (zoomed) {
+      return <Zoomed back={()=>this.zoomImage()} image={zoomed}/>
     }
 
     return (
@@ -85,15 +91,11 @@ class Apod extends Component {
         title="Nasa Photo of the day"
         full
         >
-        <p>{this.state.photoSet.length} Images
-          <a className="button is-dark"
-            onClick={()=>this.clearCache()}>
-            Load more
-          </a>
-        </p>
         <Slides
           photoSet={photoSet}
           fetched={fetched}
+          loader={()=>this.clearCache()}
+          zoomed={(photo)=>this.zoomImage(photo)}
           />
       </Hero>
     )

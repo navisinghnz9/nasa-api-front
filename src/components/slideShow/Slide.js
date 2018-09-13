@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({photo, width}) => {
+export default ({photo, width, handleZoom}) => {
   return (
     <div className="card">
       <div className="card-image">
@@ -16,7 +16,7 @@ export default ({photo, width}) => {
         </div>
       </div>
       <footer className="card-footer">
-        <a className="card-footer-item">View</a>
+        <a onClick={()=>{handleZoom(photo)}}className="card-footer-item">View</a>
         <a className="card-footer-item">Save</a>
       </footer>
     </div>
