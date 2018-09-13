@@ -26,13 +26,29 @@ class Apod extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
-    fetch(endPoint)
+    if (!localStorage.getItem('apod_store')) {
+      console.log('no storage');
+      this.setState({ isLoading: true });
+
+      fetch(endPoint)
       .then(response => response.json())
       .then(data => this.setState(
-        { photos: data, isLoading: false }
+        { photos: data, isLoading: false, fetched: true}
       ));
+    }
+    else {
+      const cache = JSON.parse(localStorage.getItem('apod_store'));
+      console.log('Cached state from storage');
+      this.setState(cache)
+    }
   }
+  // store last fetch!
+  componentWillUnmount() {
+      if (this.state.fetched) {
+        localStorage.setItem('apod_store', JSON.stringify(this.state));
+        console.log('Storing in localStorage, key: apod_store');
+      }
+    }
 
 
   render () {
@@ -40,8 +56,8 @@ class Apod extends Component {
 
     return (
       <Hero
-        title={'Browse beautfiul photos from space in an uninterrupted manner'}
-        subtitle=""
+        subtitle={'Browse mindblowing photos from space in an uninterrupted manner'}
+        title="Nasa Photo of the day"
         full
         >
         <Slides

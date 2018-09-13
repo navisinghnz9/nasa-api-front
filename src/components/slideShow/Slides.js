@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import {default as Slide} from './Slide'
 
@@ -8,7 +7,7 @@ export default (props) => {
 
   const renderArray = (photoSet) => {
     return photoSet.map((photo,index) => (
-    <div key={index} className="column">
+    <div key={index} className="column is-one-quarter">
       <Slide photo={photo} width="256"/>
     </div>
     ))
