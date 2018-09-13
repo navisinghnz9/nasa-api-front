@@ -1,16 +1,25 @@
 import React from 'react'
 import { default as Hero } from '../hero/Hero'
 
+const styles = {
+
+}
+
 export default ({image, back}) => {
-  console.log(image);
   return (
     <Hero
-    title="ZOOMED"
+    title={image.title}
     subtitle=""
     full
+    bg={image.hdurl}
     >
-    <a className="button" onClick={()=>back()}>Go Back</a>
-    <img src={image.url} />
+    <div className="content">
+      <a className="button" onClick={()=>back()}>Go Back</a>
+      <p className="subtitle"></p>
+      <p>{image.explanation}</p>
+    </div>
+
+    {/*<img src={image.url} />*/}
     </Hero>
   )
 }

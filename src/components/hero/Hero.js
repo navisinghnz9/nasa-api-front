@@ -14,9 +14,14 @@ export default (props) => {
     : 'is-dark'
   );
 
+  const style = {
+    backgroundImage: `url(${props.bg})`,
+    backgroundSize: 'cover'
+  }
+
   return (
     <section className={classes.join(' ')}>
-      <div className="hero-body" >
+      <div className="hero-body" style={style} >
         <div className="container">
           <h1 className="title">
           {props.title}
