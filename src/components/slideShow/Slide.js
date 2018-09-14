@@ -10,9 +10,10 @@ export default ({photo, width, handleZoom}) => {
       </div>
       <div className="card-content">
         <div className="content">
-          {photo.explanation.substring(0,120)}...
-          <br />
+          <p className="subtitle is-5 has-text-dark">{photo.title}</p>
+          <p>{photo.explanation.substring(0,120)}...<br />
           <time dateTime={photo.date}>{photo.date}</time>
+          </p>
         </div>
       </div>
       <footer className="card-footer">
