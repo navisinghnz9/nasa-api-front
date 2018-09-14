@@ -4,16 +4,9 @@ import { default as Hero } from '../components/hero/Hero'
 import { default as Loading } from '../components/layout/Loading'
 import { default as Slides } from '../components/slideShow/Slides'
 import { default as Zoomed } from '../components/slideShow/Zoomed'
-import { APOD } from '../lib/API'
 
-const query = {
-  'count': 12,
-  //'date': '2018-08-21',
-   'hd': true,
-  // 'start_date': '2018-08-22',
-  // 'end_date': '2018-07-31'
-}
-const endPoint = `${APOD.url}?api_key=${APOD.key}${APOD.parseQuery(query)}`;
+import {  APOD_endPoint } from '../lib/API'
+
 
 class Apod extends Component {
   constructor() {
@@ -28,38 +21,50 @@ class Apod extends Component {
 
   componentDidMount() {
     if (!localStorage.getItem('apod_store')) {
-      this.getImages();
+      this.getImages(APOD_endPoint, this.state);
     }
     else {
       const cache = JSON.parse(localStorage.getItem('apod_store'));
-      console.log('Cached state from storage');
-      this.setState(cache)
+      console.log('Cached state from storage ', this.state.photoSet.length, 'images');
+      this.setState((prevState)=> (
+        cache
+        ))
     }
   }
 
   componentWillUnmount() {
-    if (this.state.fetched) {
-      localStorage.setItem('apod_store', JSON.stringify(this.state));
-      console.log('Storing in localStorage, key: apod_store');
-    }
+    this.storeCache()
   }
 
-  getImages(endpoint) {
+  getImages(endpoint,prevState) {
     this.setState({ isLoading: true });
-    fetch(endPoint)
+    fetch(endpoint)
     .then(response => response.json())
-    .then(data => this.setState({
-        photoSet: data.concat(this.state.photoSet),
+    .then((data) => this.setState(prevState => ({
+        photoSet: [...data.reverse(), ...prevState.photoSet],
         isLoading: false,
         fetched: true
-      })
-      )
+      }))
+    )
+    .catch(error => this.setState({
+        ...this.state,
+        error: error,
+        isLoading: false,
+        fetched: false
+      }))
+  }
+
+  storeCache() {
+    if (this.state.fetched) {
+      localStorage.setItem('apod_store', JSON.stringify(this.state));
+      console.log('Storing in localStorage, key: apod_store. ', this.state.photoSet.length, 'images');
+    }
   }
 
   clearCache() {
     if (localStorage.getItem('apod_store') !== undefined) {
       localStorage.removeItem('apod_store');
-      this.getImages(endPoint);
+      this.getImages(APOD_endPoint);
     }
   }
 
