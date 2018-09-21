@@ -12,24 +12,9 @@ export default (props) => {
             <img src={logo} className="App-logo" alt="app-logo" width="50" height="50" />
             {props.title}
           </NavLink>
-
-          <div className="navbar-burger burger" data-target="navbarExampleTransparentExample">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-
-        <div id="navbarExampleTransparentExample" className="navbar-menu">
-
-          <div className="navbar-end">
-            <NavLink to="photo-of-the-day" className="navbar-item">
-              <span className="button is-inverted">Nasa Photo of the day</span>
-            </NavLink>
-            <NavLink to="about" className="navbar-item">
-              About
-            </NavLink>
-          </div>
+          <NavLink to="photo-of-the-day" className="navbar-item ">
+            <span className="">NASA Photo of day</span>
+          </NavLink>
         </div>
       </nav>
     </div>
