@@ -28,7 +28,7 @@ export default (props) => {
 
 
   const displayCards = rovers.map(rover=>(
-    <div className="column">
+    <div className="column" key={rover.id}>
       <a onClick={()=>props.handler(rover)}>
       <div className="card"
         key={rover.id}
