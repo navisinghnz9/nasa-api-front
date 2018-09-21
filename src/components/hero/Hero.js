@@ -1,4 +1,5 @@
 import React from 'react';
+import { default as NavBar } from '../navbar/NavBar';
 
 export default (props) => {
 
@@ -11,7 +12,7 @@ export default (props) => {
   classes.push(
     props.light
     ? 'is-light'
-    : 'is-dark'
+    : 'is-dark is-main-background'
   );
 
   const style = {
@@ -20,8 +21,13 @@ export default (props) => {
   }
 
   return (
-    <section className={classes.join(' ')}>
-      <div className="hero-body" style={style} >
+    <section className={classes.join(' ')} style={style}>
+      <NavBar
+        title="Look into space"
+        />
+      <div className="hero-body"  >
+        <canvas id="stars-bg"></canvas>
+
         <div className="container">
           <h1 className="title">
           {props.title}
@@ -31,6 +37,13 @@ export default (props) => {
           </h2>
           {props.children}
         </div>
+      </div>
+      <div className="hero-foot">
+        <nav className="tabs">
+          <div className="container">
+
+          </div>
+        </nav>
       </div>
     </section>
   )

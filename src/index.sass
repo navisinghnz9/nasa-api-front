@@ -10,11 +10,12 @@ $beige-light: #D0D1CD;
 $beige-lighter: #EFF0EB;
 $black: #000;
 
+
 // Update Bulma's global variables
 $body-size: 15px;
 $family-sans-seriff: "IBM Plex Sans", sans-serif;
 $family-sans-serif: "IBM Plex Sans Condensed", sans-serif;
-$grey-dark: $brown;
+$grey-dark: #0D151E;
 $grey-light: $beige-light;
 $primary: $purple;
 $link: $brown;
@@ -29,7 +30,15 @@ $input-shadow: none;
 $navbar-background-color: transparent;
 
 // Card component modifiers
-$card-shadow: 0 1px 3px rgba($black, .1), 0 0 0 2px rgba($black, 0.1);
+$card-shadow: 0 1px 3px rgba($grey-light, 0.1), 0 0 0 0px rgba($grey-light, 0.1);
+$card-header-color: lighten($grey-dark, 55%)
+$card-background-color:  lighten($grey-dark, 3%)
+$card-color: darken($grey-light, 25%)
+
+
+$hero-background-color: #090A0E;
+.is-dark.is-main-background
+  background-color: $hero-background-color !important
 
 // Import the rest of Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";

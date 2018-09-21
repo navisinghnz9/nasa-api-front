@@ -13,17 +13,24 @@ export default ({ photoSet, loader, zoomed }) => {
     ))
   }
   return (
-    <div className="columns is-multiline ">
-      <div className="container">
-        <nav className="level">
-          <p className=" has-text-centered">{photoSet.length} Images </p>
-          <a className="button is-dark"
+    <div className="">
+    <div className="container">
+      <nav className="level">
+        <div className="level-left">
+          <p className="level-item has-text-centered">{photoSet.length} Images </p>
+        </div>
+        <div className="lever-rigth">
+          <a className="level-item has-text-centered button is-dark"
             onClick={()=>loader()}>
             Load more
           </a>
-        </nav>
-      </div>
+        </div>
+      </nav>
+    </div>
+    
+    <div className="columns is-multiline ">
         {renderArray(photoSet)}
     </div>
+  </div>
   )
 }

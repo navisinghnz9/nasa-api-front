@@ -4,13 +4,19 @@ export default ({photo, width, handleZoom}) => {
   return (
     <div className="card">
       <div className="card-image">
-        <figure className="image is-256x256" style={{height:256, overflow:"hidden"}}>
-          <img alt={photo.title} src={photo.url} height={width}/>
+        <figure className="image is-256x256" >
+          <img alt={photo.title} src={photo.url} height={width}
+            style={{
+              height:256,
+              overflow:"hidden",
+              objectFit: "cover",
+              objectPosition: "center"
+            }}/>
         </figure>
       </div>
       <div className="card-content">
         <div className="content">
-          <p className="subtitle is-5 has-text-dark">{photo.title}</p>
+          <p className="subtitle is-5 has-text-light">{photo.title}</p>
           <p>{photo.explanation.substring(0,120)}...<br />
           <time dateTime={photo.date}>{photo.date}</time>
           </p>
