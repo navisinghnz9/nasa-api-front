@@ -17,7 +17,8 @@ export default (props) => {
 
   const style = {
     backgroundImage: `url(${props.bg})`,
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
   }
 
   return (
@@ -25,9 +26,7 @@ export default (props) => {
       <NavBar
         title="Look into space"
         />
-      <div className="hero-body"  >
-        <canvas id="stars-bg"></canvas>
-
+      <div className="hero-body">
         <div className="container">
           <h1 className="title">
           {props.title}
