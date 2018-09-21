@@ -41,7 +41,9 @@ class Apod extends Component {
     fetch(endpoint)
     .then(response => response.json())
     .then((data) => this.setState(prevState => ({
-        photoSet: [...data.reverse(), ...prevState.photoSet],
+        photoSet: [...data.filter(ph => (
+          ph.media_type === 'image' && ph
+        )).reverse(), ...prevState.photoSet],
         isLoading: false,
         fetched: true
       }))
@@ -72,7 +74,7 @@ class Apod extends Component {
     if (!image) {
       this.setState({
         ...this.state,
-        zommed: null
+        zoomed: null
       })
     }
     this.setState({
