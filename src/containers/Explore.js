@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { default as Hero } from '../components/hero/Hero'
 import { default as RoverCards } from '../components/rovercards/RoverCards'
+import { default as RoverMounted } from '../components/rovercards/RoverMounted'
 
 import './Explore.css';
+import marsRender from '../static/mars-render-bg.jpg';
+import bgRover1 from '../static/rover-1.jpg';
+import bgRover2 from '../static/rover-2.jpg';
+import bgRover3 from '../static/rover-3.jpg';
 
 // api mocks
 const mockArr = (n,s) => {return Array(n).fill(s)}
@@ -13,7 +18,8 @@ const rovers = [
     slug: 'curiosity',
     cameras: ['front','back','center','pano', 'roof'],
     slides: mockArr(13100, 'C'),
-    sols: 1000
+    sols: 1000,
+    bg: bgRover1
   },
   {
     id: 222,
@@ -21,7 +27,9 @@ const rovers = [
     slug: 'oportunity',
     cameras: ['front','back','center','pano', 'roof'],
     slides: mockArr(7250,'O'),
-    sols: 800
+    sols: 800,
+    bg: bgRover2
+
   },
   {
     id: 333,
@@ -29,7 +37,8 @@ const rovers = [
     slug: 'spirit',
     cameras: ['front','back','center','pano', 'roof'],
     slides: mockArr(4401,'S'),
-    sols: 600
+    sols: 600,
+    bg: bgRover3
   }
 ];
 
@@ -62,14 +71,20 @@ class App extends Component {
       <div className="App">
 
         <Hero
-          title={this.state.mounted.id || 'Welcome to Nasa. Choose one'}
-          subtitle=""
-          mounted={this.state.mounted.mounted}>
+          title={this.state.mounted.id || 'Welcome to the Red Planet'}
+          subtitle="The rocks, soil and sky have a red or pink hue. The distinct red color was observed by stargazers throughout history. It was given its name by the Romans in honor of their god of war. Our civilizations is currently exploring it with three on-site Rovers."
+          mounted={this.state.mounted.mounted}
+          bg={marsRender}
+          full>
+          {!this.state.mounted.mounted? null : <RoverMounted />}
+
         </Hero>
 
-        <RoverCards
+        {!this.state.mounted.mounted? <RoverCards
           rovers={rovers}
-          handler={(target)=>this.onClickHandler(target)}/>
+          handler={(target)=>this.onClickHandler(target)}
+        /> : null }
+
 
       </div>
     );
