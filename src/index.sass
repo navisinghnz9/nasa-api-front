@@ -1,7 +1,5 @@
-
-
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:400|IBM+Plex+Sans:100,400,700');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,400,600');
 // Set your brand colors
 $purple: #8A4D76;
 $pink: #FA7C91;
@@ -12,9 +10,8 @@ $black: #000;
 
 // Update Bulma's global variables
 $body-size: 15px;
-$family-sans-seriff: "IBM Plex Sans", sans-serif;
-$family-sans-serif: "IBM Plex Sans Condensed", sans-serif;
-$grey-dark: $brown;
+$family-sans-serif: "IBM Plex Sans", sans-serif;
+$grey-dark: #0D151E;
 $grey-light: $beige-light;
 $primary: $purple;
 $link: $brown;
@@ -25,8 +22,36 @@ $input-background-color: $beige-lighter;
 $input-border-color: transparent;
 $input-shadow: none;
 
+// Navbar component customization
+$navbar-background-color: transparent;
+
 // Card component modifiers
-$card-shadow: 0 1px 3px rgba($black, .1), 0 0 0 2px rgba($black, 0.1);
+$card-shadow: 0 1px 3px rgba($grey-light, 0.1), 0 0 0 0px rgba($grey-light, 0.1);
+$card-header-color: $grey-light
+$card-background-color:  lighten($grey-dark, 3%)
+$card-color: darken($grey-light, 25%)
+
+
+$hero-background-color: #090A0E;
+.is-dark.is-main-background
+  background-color: $hero-background-color !important
+
+// React spinning logo
+.App-logo
+  animation: App-logo-spin infinite 20s linear
+  height: 80px
+
+@keyframes App-logo-spin
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+
+
+// Apod-cards ui
+.zoomable-card
+  transition: all .2s ease-out
+.zoomable-card:hover
+  transform: scale(1.04)
+
 
 // Import the rest of Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";
@@ -35,9 +60,13 @@ $card-shadow: 0 1px 3px rgba($black, .1), 0 0 0 2px rgba($black, 0.1);
 @import "../node_modules/bulma/sass/elements/container.sass";
 @import "../node_modules/bulma/sass/elements/form.sass";
 @import "../node_modules/bulma/sass/elements/title.sass";
+@import "../node_modules/bulma/sass/elements/image.sass";
 @import "../node_modules/bulma/sass/layout/hero.sass";
 @import "../node_modules/bulma/sass/layout/section.sass";
-@import "../node_modules/bulma/sass/grid/_all.sass";
 
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/grid/tiles.sass";
+
+@import "../node_modules/bulma/sass/components/level.sass";
 @import "../node_modules/bulma/sass/components/navbar.sass";
 @import "../node_modules/bulma/sass/components/card.sass";
