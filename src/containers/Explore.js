@@ -5,7 +5,7 @@ import { default as RoverCards } from '../components/rovercards/RoverCards'
 import { default as Footer } from '../components/layout/Footer'
 
 import Rover from './Rover'
-import {mockArr, rovers } from '../lib/Mocks.js'
+import {rovers} from '../lib/Mocks.js'
 
 import marsRender from '../static/mars-render-bg.jpg';
 
