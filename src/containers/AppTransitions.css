@@ -1,7 +1,7 @@
 .fade-appear,
 .fade-enter {
   opacity: 0;
-  transform: rotate(-.6deg) translateY(20px);
+  transform: rotate(-.1deg) translateY(20px);
 }
 .fade-appear-active,
 .fade-enter-active {
