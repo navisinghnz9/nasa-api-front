@@ -1,25 +1,26 @@
 import React from 'react'
 import { default as Hero } from '../hero/Hero'
 
-const styles = {
-
-}
-
 export default ({image, back}) => {
   return (
-    <Hero
-    title={image.title}
-    subtitle=""
-    full
-    bg={image.hdurl}
-    >
-    <div className="content">
-      <a className="button" onClick={()=>back()}>Go Back</a>
-      <p className="subtitle"></p>
-      <p>{image.explanation}</p>
-    </div>
+    <section className="zoomed-image">
+      <Hero
+      title=""
+      subtitle=""
+      full
+      bg=""
+      >
+      <img src={image.hdurl} style={{minWidth: '100%'}}/>
+      <article class="message" style={{backgroundColor: '#121C29'}}>
+        <div class="message-body" style={{borderColor: '#60DAFB'}}>
+          <a className="button" onClick={()=>back()}>Go Back</a>
+          <p className="title has-text-light">{image.title}</p>
+          <p className="has-text-grey-light">{image.explanation}</p>
+        </div>
+      </article>
 
-    {/*<img src={image.url} />*/}
-    </Hero>
+
+      </Hero>
+    </section>
   )
 }

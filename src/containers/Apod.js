@@ -77,10 +77,13 @@ class Apod extends Component {
         zoomed: null
       })
     }
-    this.setState({
-      ...this.state,
-      zoomed: image
-    })
+    else {
+      window.scrollTo(0, 0);
+      this.setState({
+        ...this.state,
+        zoomed: image
+      })
+    }
   }
 
   render () {
