@@ -43,6 +43,29 @@ const APOD_endPoint = `${APOD_url}?api_key=${APOD_key}${APOD.parseQuery(APOD_que
 
 
 
+const ROVER_query = {'sol': 300,}
+const ROVER = {
+  key: APOD_key,
+  url: 'https://api.nasa.gov/mars-photos/api/v1/rovers/',
+  parseQuery: (query) => {
+    let res = '?';
+    for(let key in query) {
+      if (query.hasOwnProperty(key) === true) {
+        res += `${key}=${query[key]}&`
+      }
+    }
+    return res;
+  },
+  endPoint: (url,rover,key,parsedQuery) => {
+    return `${url}${rover}/photos${parsedQuery}api_key=${key}`;
+  }
+}
+
+// console.log(ROVER.endPoint(ROVER.url,'curiosity', ROVER.key, ROVER.parseQuery(ROVER_query)));
+
+
+
 module.exports = {
-  APOD_endPoint
+  APOD_endPoint,
+  ROVER
 }

@@ -48,7 +48,9 @@ class App extends Component {
           >
           {!this.state.mounted.mounted
             ? null
-            : <Rover mounted={this.state.mounted.payload}/>
+            : <Rover
+              id={this.state.id}
+              mounted={this.state.mounted.payload}/>
           }
         </Hero>
 

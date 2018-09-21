@@ -11,8 +11,8 @@ export default ({image, back}) => {
       bg=""
       >
       <img src={image.hdurl} style={{minWidth: '100%'}}/>
-      <article class="message" style={{backgroundColor: '#121C29'}}>
-        <div class="message-body" style={{borderColor: '#60DAFB'}}>
+      <article className="message" style={{backgroundColor: '#121C29'}}>
+        <div className="message-body" style={{borderColor: '#60DAFB'}}>
           <a className="button" onClick={()=>back()}>Go Back</a>
           <p className="title has-text-light">{image.title}</p>
           <p className="has-text-grey-light">{image.explanation}</p>
