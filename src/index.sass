@@ -30,7 +30,7 @@ $card-shadow: 0 1px 3px rgba($grey-light, 0.1), 0 0 0 0px rgba($grey-light, 0.1)
 $card-header-color: $grey-light
 $card-background-color:  lighten($grey-dark, 3%)
 $card-color: darken($grey-light, 25%)
-
+$card-footer-border-top: 2px solid rgba(200,200,200, .2)
 
 $hero-background-color: #090A0E;
 .is-dark.is-main-background
@@ -47,11 +47,15 @@ $hero-background-color: #090A0E;
 
 
 // Apod-cards ui
-.zoomable-card
-  transition: all .2s ease-out
-.zoomable-card:hover
+.zoomable-card, .zoomable-figure img
+  transition: all .15s ease-out
+.zoomable-card:hover, .zoomable-figure:hover img
   transform: scale(1.04)
-
+.has-overflow-x-mobile
+  overflow: 'hidden'
+  @media screen and (max-width: 400px)
+    overflow-x: scroll
+    overflow-y: hidden
 
 // Import the rest of Bulma
 @import "../node_modules/bulma/sass/utilities/_all.sass";

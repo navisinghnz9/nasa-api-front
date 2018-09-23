@@ -53,7 +53,6 @@ class App extends Component {
               mounted={this.state.mounted.payload}/>
           }
         </Hero>
-
         <RoverCards
           mini={this.state.mounted.mounted? true: false }
           rovers={rovers}

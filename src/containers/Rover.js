@@ -63,7 +63,6 @@ class Rover extends Component {
     const { mounted, photoSet } = this.state
     return (
       <section className="container">
-      <a className="button is-3">back</a>
         <RoverMounted
           rover={mounted}
           photos={photoSet}
