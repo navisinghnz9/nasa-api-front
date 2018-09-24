@@ -11,10 +11,11 @@ class Rover extends Component {
       fetched: false,
       isLoading: false,
       photoSet: [],
+      filteredCams: [...props.mounted.cameras],
       zoomed: null,
       mounted: props.mounted,
       camera: null,
-      sol: props.mounted.max_sol,
+      sol: props.mounted.start_sol,
       page: null,
     }
   }
@@ -22,24 +23,22 @@ class Rover extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
     const query = {'sol': this.state.sol}
-    console.log(query);
     this.getImages(this.state.mounted.slug, query, this.state)
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.mounted !== prevProps.mounted || this.state.sol !== prevState.sol) {
       const query = {sol: this.state.sol}
-      console.log('DID UPDATE >>>>>>>>>>>>> ',query);
       this.getImages(this.props.mounted.slug, query, this.state)
       this.setState(state => ({
         ...this.state,
-        mounted: this.props.mounted
+        mounted: this.props.mounted,
+        filteredCams: [...this.props.mounted.cameras]
       }))
     }
   }
 
   getImages(rover, query, prevState) {
-    console.log('fetching...', rover);
     this.setState({
       isLoading: true
     });
@@ -62,17 +61,27 @@ class Rover extends Component {
         ...this.state,
         isLoading: true
       })
-      console.log('changing sols to: ', this.state.sol - stringOrInteger);
       this.setState({
         sol: (this.state.sol + stringOrInteger)
       })
     } else {
-      console.log('filtering array by', stringOrInteger);
+      if (stringOrInteger === 'all') {
+        stringOrInteger = this.state.mounted.cameras
+        this.setState(prevState=>({
+          ...prevState,
+          filteredCams: stringOrInteger
+        }))
+      } else {
+        this.setState(prevState=>({
+          ...prevState,
+          filteredCams: [stringOrInteger]
+        }))
+      }
     }
   }
 
   render () {
-    const { mounted, photoSet, sol } = this.state
+    const { mounted, photoSet, filteredCams, sol} = this.state
     return (
       <div>
         <Hero>
@@ -99,6 +108,7 @@ class Rover extends Component {
             loading={this.state.isLoading}
             rover={mounted}
             photos={photoSet}
+            filter={filteredCams}
             sol={sol}
             filterHandler={(filterBy)=>this.filterImages(filterBy)} />
         </div>
