@@ -35,7 +35,6 @@ const APOD = {
 
 }
 
-console.log(APOD.getDate(7));
 // hard coded query for now
 const APOD_query = {'hd': true, 'start_date': '2018-09-17', 'end_date': '2018-09-24'}
 const APOD_key = 'BRAcV4pPJZRxRNFO3cHwYFC4RBxkQpgap8UEj8pz';
