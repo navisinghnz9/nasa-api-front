@@ -1,5 +1,6 @@
 import React from 'react';
 import { default as NavBar } from '../navbar/NavBar';
+import marsRender from '../../static/mars-render-bg.jpg';
 
 export default (props) => {
 
@@ -7,7 +8,7 @@ export default (props) => {
   classes.push(
     props.full
     ? 'is-fullheight'
-    : 'is-large'
+    : 'is-normal'
   );
   classes.push(
     props.light
@@ -16,7 +17,7 @@ export default (props) => {
   );
 
   const style = {
-    backgroundImage: `url(${props.bg})`,
+    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.6) 0%, rgba(0,0,0,0.1) 50%, rgba(9, 10, 14, 1) 100%), url(${props.bg || marsRender})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center'
   }
