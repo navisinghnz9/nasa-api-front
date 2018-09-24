@@ -7,8 +7,6 @@ import { default as Footer } from '../components/layout/Footer'
 import Rover from './Rover'
 import {rovers} from '../lib/Mocks.js'
 
-import marsRender from '../static/mars-render-bg.jpg';
-
 class App extends Component {
   constructor(){
     super()

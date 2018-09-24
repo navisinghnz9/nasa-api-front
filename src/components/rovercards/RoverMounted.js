@@ -1,46 +1,73 @@
 import React from 'react'
 import {default as RoverPhoto } from './RoverPhoto'
 
-export default ({rover, photos = [], children, filterHandler}) => {
-  console.log(photos);
-
+export default ({rover, photos = [], filterHandler, loading, sol}) => {
   const renderPhotos = (photos) => {
-    return photos.map((photo, index) => (
-      <div key={index} className="column is-3">
-        <RoverPhoto photo={photo} />
-      </div>
-    ))
+    if (loading) return <p>Loading...</p>
+    else {
+      return (
+        <div className="columns is-multiline">
+          {photos.map((photo, index) => (
+            <div key={index} className="column is-3">
+              <RoverPhoto photo={photo} />
+            </div>
+          ))}
+        </div>
+      )
+    }
+  }
+
+  const style = {
+    card: {
+      borderRadius: '.5em',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      height: '18vh',
+      marginTop: '-5em'
+    },
+    manifest: {
+      marginTop: '-4em'
+    },
+    photocolumns: {
+      overflowX: 'scroll',
+      width: '100vw'
+    }
   }
 
   return (
-    <section className="container">
-      <div className="tile is-ancestor">
-        <div className="tile is-3 is-vertical is-parent">
-          <div className="tile is-child box is-outlined">
-            <p className="subtitle has-text-warning">Manifest</p>
-            <p>{rover.manifest}</p><br/>
-            <p className="subtitle has-text-warning">Data</p>
-            <p>Launch date: {rover.launch_date}</p>
-            <p>Landing date: {rover.landing_date}</p>
-            <p>Photos to date: {rover.slides.length}</p>
-            <ul>Cameras on board: {rover.cameras.map(el=>(
-                <li onClick={()=>filterHandler(el)}
-                  key={el} style={{listStyle: 'inline'}}>{el}</li>)
-            )}</ul>
-          </div>
-          <div className="tile is-child box">
-
+    <section className="container has-text-grey-lighter ">
+      <div className="columns">
+        <div className="column is-2">
+          <div className="card is-hidden-mobile"
+            style={
+              {...style.card,
+                backgroundImage: `url(${rover.bg})`}
+              }>
           </div>
         </div>
-        <div className="tile is-parent">
-          <div className="tile is-child box">
-            {children}
-            <div className="columns is-multiline">
-              {renderPhotos(photos)}
-            </div>
+        <div className="column" style={{...style.manifest}}>
+          <div className="content">
+            <p className="title is-spaced is-3 has-text-white">{rover.name}</p>
+            <p className="subtitle is-tight has-text-grey is-6"><span className="subtitle has-text-warning is-5">Data: </span>
+              Landed: {rover.landing_date} | Mission length: {rover.max_sol} Sol | Total photos: {rover.slides.length}
+            </p>
+            <p className="subtitle is-tight has-text-grey is-6"><span className="subtitle has-text-warning is-5">Manifest: </span>
+              {rover.manifest}
+            </p>
           </div>
         </div>
       </div>
+      <div className="content">
+        <p className="subtitle is-tight is-5 has-text-grey">Images: {photos.length}</p>
+        <div className="buttons has-addons">
+          <span className="button disabled is-dark is-small has-text-white is-outlined">{loading || 'Filter by Camera: '}</span>
+          {rover.cameras.map(el=>(
+              <span key={el} className="button is-dark is-small"
+                onClick={()=>filterHandler(el)}>{el}</span>)
+          )}
+        </div>
+      </div>
+      {photos && renderPhotos(photos)}
     </section>
   )
 }

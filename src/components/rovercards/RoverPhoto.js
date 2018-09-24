@@ -12,17 +12,17 @@ const style = {
 }
 
 export default (props) => {
-  const {camera, id, earth_date, img_src, rover, sol} = props.photo;
+  const {camera, earth_date, img_src} = props.photo;
   return (
     <div className="card">
       <div className="card-image" style={{overflow:'hidden'}}>
         <figure className="image zoomable-figure is-3by3">
-          <img src={img_src} alt="Placeholder image" />
+          <img src={img_src} alt="rover" />
         </figure>
       </div>
       <div className="card-content" style={style}>
-          <p className="title is-6">{camera.full_name}</p>
-          <p className="subtitle is-6">{earth_date}</p>
+          <p className="title is-6 has-text-light">{camera.full_name}</p>
+          <p className="subtitle is-6 has-text-grey-light">{earth_date}</p>
       </div>
     </div>
   )
