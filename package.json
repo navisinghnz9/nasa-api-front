@@ -13,8 +13,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "sass": "node-sass-chokidar --include-path ./node_modules/ ./src -o ./src --output-style compressed --watch",
-    "build": "react-scripts build",
+    "sass-watch": "node-sass-chokidar --include-path ./node_modules/ ./src -o ./src --watch",
+    "sass-build": "node-sass-chokidar --include-path ./node_modules/ ./src -o ./src --output-style compressed",
+    "build": "npm run sass-build && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
