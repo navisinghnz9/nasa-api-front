@@ -25,7 +25,6 @@ class Apod extends Component {
     }
     else {
       const cache = JSON.parse(localStorage.getItem('apod_store'));
-      console.log('Cached state from storage ', this.state.photoSet.length, 'images');
       this.setState((prevState)=> (
         cache
         ))
@@ -60,7 +59,6 @@ class Apod extends Component {
   storeCache() {
     if (this.state.fetched) {
       localStorage.setItem('apod_store', JSON.stringify(this.state));
-      console.log('Storing in localStorage, key: apod_store. ', this.state.photoSet.length, 'images');
     }
   }
 

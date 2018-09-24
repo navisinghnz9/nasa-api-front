@@ -21,13 +21,12 @@ const APOD = {
 
   getDate: (count) => {
     const start = new Date();
-
     const end = new Date();
     const endDate = end.getDate() - count;
     end.setDate(endDate)
 
-
     const result = {
+      hd:true,
       start_date: start.toISOString().substr(0,10),
       end_date:  end.toISOString().substr(0,10)
     }
@@ -36,7 +35,9 @@ const APOD = {
 
 }
 
-const APOD_query = {'hd': true, 'start_date': '2018-08-08', 'end_date': '2018-08-14'}
+console.log(APOD.getDate(7));
+// hard coded query for now
+const APOD_query = {'hd': true, 'start_date': '2018-09-17', 'end_date': '2018-09-24'}
 const APOD_key = 'BRAcV4pPJZRxRNFO3cHwYFC4RBxkQpgap8UEj8pz';
 const APOD_url = 'https://api.nasa.gov/planetary/apod';
 const APOD_endPoint = `${APOD_url}?api_key=${APOD_key}${APOD.parseQuery(APOD_query)}`;
@@ -57,9 +58,6 @@ const ROVER = {
     return `${url}${rover}/photos${parsedQuery}api_key=${key}`;
   }
 }
-
-// console.log(ROVER.endPoint(ROVER.url,'curiosity', ROVER.key, ROVER.parseQuery(ROVER_query)));
-
 
 
 module.exports = {

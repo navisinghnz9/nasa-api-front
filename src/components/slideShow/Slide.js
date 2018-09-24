@@ -23,10 +23,7 @@ export default ({photo, width, handleZoom}) => {
           </p>
         </div>
       </div>
-      {/*<footer className="card-footer">
-        <a className="card-footer-item">View</a>
-        <a className="card-footer-item">Save</a>
-      </footer>*/}
+
     </div>
     </a>
   )
