@@ -41,9 +41,6 @@ const APOD_key = 'BRAcV4pPJZRxRNFO3cHwYFC4RBxkQpgap8UEj8pz';
 const APOD_url = 'https://api.nasa.gov/planetary/apod';
 const APOD_endPoint = `${APOD_url}?api_key=${APOD_key}${APOD.parseQuery(APOD_query)}`;
 
-
-
-const ROVER_query = {'sol': 300,}
 const ROVER = {
   key: APOD_key,
   url: 'https://api.nasa.gov/mars-photos/api/v1/rovers/',

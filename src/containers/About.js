@@ -8,7 +8,7 @@ export default (props) => {
       title={'About this page'}
       subtitle=""
       full
-      light
+      
       >
       <p>GEt it on github</p>
     </Hero>
