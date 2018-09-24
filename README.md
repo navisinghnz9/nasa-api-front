@@ -5,9 +5,9 @@ A React frontend that consumes the Nasa api, in a mobile first manner. Made as a
 - Run command ```npm install``` followed by ```npm start```
 to get the frontend app served locally at [http://localhost:3000](http://localhost:3000)
 
-- The command ```npm sass-watch``` will build your main sass-file into a css in watch-mode, for hot reloading of your css.
+- The command ```npm run sass-watch``` will build your main sass-file into a css in watch-mode, for hot reloading of your css.
 
-- The command ```npm build``` builds the app for production to the ```/build``` folder, which is hidden in your gitignore, why you might not see it in your editor.
+- The command ```npm run build``` builds the app for production to the ```/build``` folder, which is hidden in your gitignore, why you might not see it in your editor.
 
 ### Challenge:
 
