@@ -100,6 +100,7 @@ class Apod extends Component {
       <Hero
         subtitle={'Browse mindblowing photos from space in an uninterrupted manner'}
         title="Nasa Photo of the day"
+        bg="null"
         full
         >
         <Slides

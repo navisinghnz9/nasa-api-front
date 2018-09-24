@@ -10,7 +10,7 @@ export default ({image, back}) => {
       full
       bg=""
       >
-      <img src={image.hdurl} style={{minWidth: '100%'}}/>
+      <img src={image.hdurl} style={{minWidth: '100%'}} alt="zoomed"/>
       <article className="message" style={{backgroundColor: '#121C29'}}>
         <div className="message-body" style={{borderColor: '#60DAFB'}}>
           <a className="button" onClick={()=>back()}>Go Back</a>
