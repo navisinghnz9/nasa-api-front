@@ -10,7 +10,7 @@ import { default as Explore } from './Explore'
 import { default as Apod } from './Apod'
 import { default as About } from './About'
 
-import './AppTransitions.css';
+import '../static/AppTransitions.css';
 
 const App = ({ location }) => {
 
